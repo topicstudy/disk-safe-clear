@@ -15,6 +15,7 @@ import com.wjh.reporter.ProgressReporter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -49,7 +50,9 @@ public class UIWindow {
         jFrame.setTitle(Constant.APP_NAME);
         jFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setIconImage(new ImageIcon(Constant.LOGO_URI).getImage());
+        URL url = UIWindow.class.getClassLoader().getResource("logo.png");//TODO 静态资源路径
+        LogUtil.log("logo.png's url is %s" + url);// jar:file:/D:/code/IdeaProjects/disk-safe-clear/target/disk-safe-clear-1.0.0-jar-with-dependencies.jar!/logo.png
+        jFrame.setIconImage(new ImageIcon(url).getImage());
     }
 
     /**
