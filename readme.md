@@ -34,7 +34,7 @@
 1. 在项目根目录(pom.xml)运行maven打包
 
 ```shell
-git clone ghttps://gitee.com/open_projects/cleardisk.git
+git clone https://gitee.com/open_projects/cleardisk.git
 cd ./cleardisk
 mvn package
 ```
