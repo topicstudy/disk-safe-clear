@@ -2,7 +2,6 @@ package com.wjh.reporter;
 
 import com.wjh.UIWindow;
 import com.wjh.basic.collection.CollectionUtil;
-import com.wjh.basic.file.FileUtil;
 import com.wjh.basic.number.DoubleUtil;
 import com.wjh.common.util.LogUtil;
 
@@ -15,11 +14,11 @@ import java.util.Set;
  * 用1个线程报告所有进度
  */
 public class DefaultProgressReporter implements ProgressReporter {
-    private static boolean hasOpenedReportThread = false;
+    private static boolean hasOpenReportThread = false;
 
     @Override
     public synchronized void report() {
-        if (hasOpenedReportThread) return;
+        if (hasOpenReportThread) return;
 
         Map<String, JLabel> diskNameAndProgressLabelMap = UIWindow.diskNameAndProgressLabelMap;
         if (diskNameAndProgressLabelMap == null) return;
@@ -28,9 +27,9 @@ public class DefaultProgressReporter implements ProgressReporter {
         if (diskNameAndClearThreadMap == null) return;
 
         Thread thread = new Thread(() -> {
-            hasOpenedReportThread = true;
+            hasOpenReportThread = true;
             while (true) {
-                // 每200ms报告一次进度
+                // 每100ms报告一次进度
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -59,7 +58,6 @@ public class DefaultProgressReporter implements ProgressReporter {
                     }
 
                     // 报告进度
-
                     double d = 1 - (usableSpace.doubleValue()) / (totalSpace.doubleValue());//totalSpace可能超过int最大值(21亿)
                     String clearProgress = DoubleUtil.percentage(d, 2);
                     progressLabel.setText(clearProgress);

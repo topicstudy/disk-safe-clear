@@ -1,7 +1,9 @@
 package com.wjh.filler;
 
+import com.wjh.UIWindow;
 import com.wjh.basic.date.DateUtil;
 import com.wjh.common.Constant;
+import com.wjh.common.DiskStatusEnum;
 import com.wjh.common.util.FileUtil;
 import com.wjh.common.util.LogUtil;
 
@@ -68,7 +70,7 @@ public class DefaultDiskFillerImpl implements DiskFiller {
                                 return;
                             }
 
-                            LogUtil.log(String.format("%s盘填满了", diskName));
+                            LogUtil.log(String.format("%s盘已填满", diskName));
 
                             // 清理填充文件
                             try {
@@ -76,6 +78,9 @@ public class DefaultDiskFillerImpl implements DiskFiller {
                             } catch (InterruptedException interruptedException) {
                                 interruptedException.printStackTrace();
                             }
+                            UIWindow.diskNameAndProgressLabelMap.get(diskName).setText("完成");
+                            UIWindow.diskNameAndClearThreadMap.remove(diskName);
+                            UIWindow.diskStatusMap.put(diskName, DiskStatusEnum.RELEASING);
                             FileUtil.delete(diskName + ":/");
                         }
                     }

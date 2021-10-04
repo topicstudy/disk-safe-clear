@@ -4,6 +4,7 @@ import com.wjh.basic.collection.CollectionUtil;
 import com.wjh.basic.file.FileUtil;
 import com.wjh.basic.text.StringUtil;
 import com.wjh.common.Constant;
+import com.wjh.common.DiskStatusEnum;
 import com.wjh.common.util.DiskUtil;
 import com.wjh.common.util.SwingUtil;
 import com.wjh.common.util.LogUtil;
@@ -28,6 +29,9 @@ public class UIWindow {
     public static Map<String, JLabel> diskNameAndProgressLabelMap = new HashMap();
     // 磁盘对应的清理线程，k:磁盘名称,v:线程
     public static Map<String, Thread> diskNameAndClearThreadMap = new HashMap();
+    // 磁盘状态,k:磁盘名称，v:磁盘状态
+    public static Map<String, DiskStatusEnum> diskStatusMap = new HashMap<>();
+
     private static JFrame jFrame = new JFrame();
     private static Container contentPane = jFrame.getContentPane();
 
@@ -51,7 +55,7 @@ public class UIWindow {
         jFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         URL url = UIWindow.class.getClassLoader().getResource("logo.png");//TODO 静态资源路径
-        LogUtil.log("logo.png's url is %s" + url);// jar:file:/D:/code/IdeaProjects/disk-safe-clear/target/disk-safe-clear-1.0.0-jar-with-dependencies.jar!/logo.png
+        LogUtil.log("logo.png's url is " + url);// jar:file:/D:/code/IdeaProjects/disk-safe-clear/target/disk-safe-clear-1.0.0-jar-with-dependencies.jar!/logo.png
         jFrame.setIconImage(new ImageIcon(url).getImage());
     }
 
@@ -74,9 +78,14 @@ public class UIWindow {
 
             nextLine(contentPane);
 
+            // 磁盘状态
+            diskStatusMap.put(diskName, DiskStatusEnum.INIT);
+
             startClearButton.addActionListener((ActionEvent e) -> {
                 // 判断磁盘是否允许被清理
                 if (isBlockedDiskName(diskName)) return;
+
+                diskStatusMap.put(diskName, DiskStatusEnum.FILLING);
 
                 // 清理磁盘
                 progressLabel.setText("0%, 马上开始清理...");
