@@ -82,6 +82,7 @@ public class DefaultDiskFillerImpl implements DiskFiller {
                             UIWindow.diskNameAndClearThreadMap.remove(diskName);
                             UIWindow.diskStatusMap.put(diskName, DiskStatusEnum.RELEASING);
                             FileUtil.delete(diskName + ":/");
+                            LogUtil.log(String.format("清理完成%s盘", diskName));
                         }
                     }
                 }

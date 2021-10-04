@@ -19,45 +19,18 @@
 [易极数据恢复 DRInstaller_1.0.2.3_tx.exe ](https://gitee.com/smlt_1_wjh_q/release/blob/master/apps/%E6%98%93%E6%9E%81%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8DDRInstaller_1.0.2.3_tx.exe)
 
 ## 运行
-## 环境要求
+1. 环境要求
+
+   配置好Java和Maven的环境变量
 
 | 环境  | 版本 |
 | ----- | ---- |
 | Java  | 1.8  |
 | Maven | 3    |
 
-##  方式一:直接运行源码
+2. 双击bin文件夹中的start.bat运行程序
 
-`com.wjh.UIWindow#main`
-
-或者自己打包运行：
-
-1. 在项目根目录(pom.xml)运行maven打包
-
-```shell
-git clone https://gitee.com/open_projects/cleardisk.git
-cd ./cleardisk
-mvn package
-```
-
-2. 打包完成后进入target文件夹，运行jar包(运行体积最大的jar)：
-
-```sh
-cd ./target
-java -jar disk-safe-clear-xxx.jar
-```
-
-## 方式二：直接运行我的jar包
-
-jar包位置：`src/main/resources/disk-safe-clear-xxx.jar`
-
-运行：
-
-```sh
-java -jar disk-safe-clear-xxx-fat.jar
-```
-
-
+> 如果发现老文件无法删除，需要以管理员权限运行start.bat
 
 
 

@@ -55,7 +55,7 @@ public class UIWindow {
         jFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         URL url = UIWindow.class.getClassLoader().getResource("logo.png");//TODO 静态资源路径
-        LogUtil.log("logo.png's url is " + url);// jar:file:/D:/code/IdeaProjects/disk-safe-clear/target/disk-safe-clear-1.0.0-jar-with-dependencies.jar!/logo.png
+        LogUtil.log("logo.png's url is " + url);// jar:file:/D:/code/IdeaProjects/disk-safe-clear/target/disk-safe-clear-ga.jar!/logo.png
         jFrame.setIconImage(new ImageIcon(url).getImage());
     }
 

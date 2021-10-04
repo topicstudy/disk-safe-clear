@@ -1,0 +1,1 @@
+java -jar ../src/main/resources/disk-safe-clear-ga.jar
