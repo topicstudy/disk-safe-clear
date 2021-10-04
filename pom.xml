@@ -6,7 +6,7 @@
 
     <groupId>com.wjh</groupId>
     <artifactId>disk-safe-clear</artifactId>
-    <version>1.0.0.SNAPSHORT</version>
+    <version>1.0.0</version>
     <description>安全清理磁盘</description>
 
     <dependencies>
