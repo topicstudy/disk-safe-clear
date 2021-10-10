@@ -3,14 +3,6 @@
 
 该应用不允许清除C盘的数据（因为一般C盘装了操作系统，重要文件一般不存C盘）
 
-# 仓库
-
-* github   https://github.com/luotuoshamo/disk-safe-clear.git
-
-* gitee https://gitee.com/smlt_1_wjh_q/disk-safe-clear.git
-
-  
-
 ## 原理
 * 直接删除磁盘上的文件是可以被恢复回来的的
 * 格式化磁盘后，文件也可恢复
